@@ -94,8 +94,15 @@ function pooper.register_tool(name, e_name, def)
 			if pointed_thing.type == "object" then
 				print('pointed_thing object')
 				local ref = pointed_thing.ref
+				local ent = ref:get_luaentity()
 				if ref:is_player() then
-					--print('pointed_thing player')
+					print('pointed_thing ref is player')
+				end
+				if ent:is_player() then
+					print('pointed_thing ent is player')
+				end
+				if ref:is_player() or ent:is_player() then
+					print('pointed_thing player')
 					-- Set poison bar
 					--hb.change_hudbar(user, "health", nil, nil, "hbhunger_icon_health_poison.png", nil, "hbhunger_bar_health_poison.png")
 					--hbhunger.poisonings[name] = hbhunger.poisonings[name] + 1
