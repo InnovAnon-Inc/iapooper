@@ -37,14 +37,12 @@ if armor.materials.poop then
 		damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1},
 
 		on_equip = function(player, index, stack)
-			-- TODO set timer
-			-- periodically suffocate nearby players
-			--minetest.after(time, func, ...)
-			--local pos = player:get_pos()
-			--pooper.abm_callback(pos)
+			local name = player:get_player_name()
+			pooper.increment_stinker(name) 
 		end,
 		on_unequip = function(player, index, stack)
-			-- TODO remove any timers
+			local name = player:get_player_name()
+			pooper.decrement_stinker(name) 
 		end,
 	})
 	--- Poop Chestplate
@@ -67,6 +65,15 @@ if armor.materials.poop then
 		groups = {armor_torso=1, armor_heal=0, armor_use=2000, flammable=1},
 		armor_groups = {fleshy=10},
 		damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1},
+
+		on_equip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.increment_stinker(name) 
+		end,
+		on_unequip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.decrement_stinker(name) 
+		end,
 	})
 	--- Poop Leggings
 	--
@@ -88,6 +95,15 @@ if armor.materials.poop then
 		groups = {armor_legs=1, armor_heal=0, armor_use=2000, flammable=1},
 		armor_groups = {fleshy=10},
 		damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1},
+
+		on_equip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.increment_stinker(name) 
+		end,
+		on_unequip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.decrement_stinker(name) 
+		end,
 	})
 	--- Poop Boots
 	--
@@ -109,6 +125,15 @@ if armor.materials.poop then
 		armor_groups = {fleshy=5},
 		damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1},
 		groups = {armor_feet=1, armor_heal=0, armor_use=2000, flammable=1},
+
+		on_equip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.increment_stinker(name) 
+		end,
+		on_unequip = function(player, index, stack)
+			local name = player:get_player_name()
+			pooper.decrement_stinker(name) 
+		end,
 	})
 	local poop_armor_fuel = {
 		helmet = 6,

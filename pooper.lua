@@ -46,19 +46,13 @@ minetest.register_craft({
 	recipe = "pooper:digestive_agent"
 })
 
-minetest.register_abm(
-	{nodenames = {"pooper:poop_pile"},
-	interval = 2.0,
-	chance = 1,
-	-- Suffocate players within a 5 node radius of "poop_pile"
-	action = pooper.abm_callback,
-})
-pooper.abm_callback = function(pos)
+pooper.abm_callback = function(pos, stinkiness)
+	if stinkiness == nil then stinkiness = 1 end
 	local objects = minetest.get_objects_inside_radius(pos, 5)
 	-- Poll players for names to pass to set_breath()
 	for i, obj in ipairs(objects) do
 		if (obj:is_player()) then
-			local depletion = minetest.get_player_by_name(obj:get_player_name()):get_breath() - 1
+			local depletion = minetest.get_player_by_name(obj:get_player_name()):get_breath() - stinkiness
 			if minetest.get_player_by_name(obj:get_player_name()):get_breath() > 1 then
 				minetest.get_player_by_name(obj:get_player_name()):set_breath(depletion)
 			else
@@ -71,6 +65,13 @@ pooper.abm_callback = function(pos)
 		end
 	end
 end
+minetest.register_abm(
+	{nodenames = {"pooper:poop_pile"},
+	interval = 2.0,
+	chance = 1,
+	-- Suffocate players within a 5 node radius of "poop_pile"
+	action = pooper.abm_callback,
+})
 
 minetest.register_craftitem("pooper:laxative", {
 	description = S("Laxative"),
