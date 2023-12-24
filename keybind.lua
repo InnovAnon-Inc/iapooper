@@ -1,3 +1,4 @@
+local MODNAME = minetest.get_current_modname()
 -- Hybrid Dog's key binding methods
 
 local on_key_releases,nr = {},0

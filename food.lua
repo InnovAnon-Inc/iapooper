@@ -1,3 +1,4 @@
+local MODNAME = minetest.get_current_modname()
 local S = minetest.get_translator("pooper")
 
 local tint = "#964B00"
@@ -5,6 +6,7 @@ local opacity = 40
 
 local TEST_FOOD = false
 
+if minetest.get_modpath("hbhunger") then
 for name, data in pairs(hbhunger.food) do
 	local modname = string.match(name,  '([^:]+)')
 	local itmname = string.match(name, ':([^:]+)')
@@ -39,4 +41,5 @@ for name, data in pairs(hbhunger.food) do
 			},
    		})
 	end
+end
 end
