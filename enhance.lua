@@ -98,10 +98,10 @@ function pooper.register_tool(name, e_name, def)
 				if ref:is_player() then
 					print('pointed_thing ref is player')
 				end
-				if ent:is_player() then
+				if ent ~= nil and ent:is_player() then
 					print('pointed_thing ent is player')
 				end
-				if ref:is_player() or ent:is_player() then
+				if ref:is_player() or (ent ~= nil and ent:is_player()) then
 					print('pointed_thing player')
 					-- Set poison bar
 					--hb.change_hudbar(user, "health", nil, nil, "hbhunger_icon_health_poison.png", nil, "hbhunger_bar_health_poison.png")
