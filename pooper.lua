@@ -1,4 +1,5 @@
-local S = minetest.get_translator("pooper")
+local MODNAME = minetest.get_current_modname()
+local S = minetest.get_translator(MODNAME)
 
 minetest.register_node("pooper:poop_pile", {
 	description = S("Pile of Feces"),
@@ -13,7 +14,9 @@ minetest.register_craftitem("pooper:poop_turd", {
 	inventory_image = "poop_turd.png",
 	on_use = minetest.item_eat(1)
 })
-hbhunger.register_food("pooper:poop_turd", 1, "", 3)
+if minetest.get_modpath("hbhunger") then
+	hbhunger.register_food("pooper:poop_turd", 1, "", 3)
+end
 
 minetest.register_craftitem("pooper:digestive_agent", {
 	description = S("Raw Digestive Agent"),
@@ -46,8 +49,9 @@ minetest.register_craft({
 	recipe = "pooper:digestive_agent"
 })
 
-pooper.abm_callback = function(pos, stinkiness)
-	if stinkiness == nil then stinkiness = 1 end
+pooper.abm_callback = function(pos)--, stinkiness) -- func(pos, node, active_object_count, active_object_count_wider),
+	--if stinkiness == nil then stinkiness = 1 end
+	local stinkiness = 1
 	local objects = minetest.get_objects_inside_radius(pos, 5)
 	-- Poll players for names to pass to set_breath()
 	for i, obj in ipairs(objects) do

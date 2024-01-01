@@ -1,4 +1,10 @@
+local MODNAME = minetest.get_current_modname()
 pooper = {}
+
+if not minetest.settings:get_bool("enable_damage") then
+	-- TODO non-hbhunger support
+	assert(false)
+end
 
 dofile(minetest.get_modpath("pooper") .. "/mana.lua") -- from `mana` mod
 dofile(minetest.get_modpath("pooper") .. "/keybind.lua") -- from `pooper` mod

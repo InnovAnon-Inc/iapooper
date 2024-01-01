@@ -1,3 +1,4 @@
+local MODNAME = minetest.get_current_modname()
 armor.materials.poop = "pooper:poop_pile"
 
 --- Registered armors.

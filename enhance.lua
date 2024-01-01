@@ -1,3 +1,4 @@
+local MODNAME = minetest.get_current_modname()
 -- Poison player
 local function poisenp(tick, time, time_left, player)
 	print('poisenp')
@@ -67,6 +68,12 @@ function pooper.register_tool(name, e_name, def)
 				--e_def.tool_capabilities.damage_groups[group] = math.ceil(value * modifier)
 			--end
 		--end
+
+		-- too many items
+		if e_def.groups == nil then
+			e_def.groups = {}
+		end
+		e_def.groups.not_in_creative_inventory = 1
 
 		-- We create our own inventory image by tinting the provided inventory image yellow
 		if e_def.inventory_image then

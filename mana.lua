@@ -1,3 +1,4 @@
+local MODNAME = minetest.get_current_modname()
 --[[
 Poop
 This mod adds poop to players, a special attribute
