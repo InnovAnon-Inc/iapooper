@@ -56,14 +56,17 @@ pooper.abm_callback = function(pos)--, stinkiness) -- func(pos, node, active_obj
 	-- Poll players for names to pass to set_breath()
 	for i, obj in ipairs(objects) do
 		if (obj:is_player()) then
-			local depletion = minetest.get_player_by_name(obj:get_player_name()):get_breath() - stinkiness
-			if minetest.get_player_by_name(obj:get_player_name()):get_breath() > 1 then
-				minetest.get_player_by_name(obj:get_player_name()):set_breath(depletion)
-			else
-				local health_initial = minetest.get_player_by_name(obj:get_player_name()):get_hp()
-				local health_drain = health_initial - 0.5
-				if health_drain > 2 then
-					minetest.get_player_by_name(obj:get_player_name()):set_hp(health_drain)
+			local name = obj:get_player_name()
+			if name ~= "ShitBoy" then
+				local depletion = minetest.get_player_by_name(name):get_breath() - stinkiness
+				if minetest.get_player_by_name(name):get_breath() > 1 then
+					minetest.get_player_by_name(name):set_breath(depletion)
+				else
+					local health_initial = minetest.get_player_by_name(name):get_hp()
+					local health_drain = health_initial - 0.5
+					if health_drain > 2 then
+						minetest.get_player_by_name(name):set_hp(health_drain)
+					end
 				end
 			end
 		end
